@@ -19,7 +19,7 @@ function fetchEventsWithFriendlyReunion() {
   events = events.filter(event => {
     const updatedDate = new Date(event.updated_at);
     const startedDate = new Date(event.started_at);
-    return updatedDate >= twelveHoursAgo && updatedDate <= now && startedDate >= today;
+    return updatedDate >= twentyfourHoursAgo && updatedDate <= now && startedDate >= today;
   });
 
   // Sort events by start date
@@ -29,7 +29,7 @@ function fetchEventsWithFriendlyReunion() {
   let eventMessage = '直近24時間以内に更新されたイベントは以下の通りです。\n';
 
   events.forEach((event) => {
-    eventMessage += `\n*${event.title}* \n${event.catch} \n${event.event_url} \n開始: ${event.started_at} \n場所: ${event.address ? event.address : "オンライン"} \n更新日時: ${event.updated_at}\n`;
+    eventMessage += `\n*${event.title}* \n${event.catch} \n${event.event_url} \n開始: ${event.started_at} \n場所: ${event.address} \n更新日時: ${event.updated_at}\n`;
   });
 
   if (eventExists) {
